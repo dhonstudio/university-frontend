@@ -23,4 +23,8 @@ export class CourseRepository {
   public updateCourse(id: number, course: CourseParamDto) {
     return this._httpClient.put(this._baseUrl + `/${id}`, course);
   }
+
+  public deleteCourse(id: number) {
+    return this._httpClient.delete(this._baseUrl + `/${id}`);
+  }
 }

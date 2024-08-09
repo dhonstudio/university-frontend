@@ -22,17 +22,19 @@ export class CourseListComponent implements OnInit {
     private _matDialog: MatDialog
   ) { }
 
-  ngOnInit(): void {
+  refreshList() {
     this._courseFeature.getCourseList().subscribe(result => {
       this.dataSource = result;
     });
   }
 
+  ngOnInit(): void {
+    this.refreshList();
+  }
+
   onAddButtonClik() {
     this._matDialog.open(CourseDialogComponent).afterClosed().subscribe(() => {
-      this._courseFeature.getCourseList().subscribe(result => {
-        this.dataSource = result;
-      });
+      this.refreshList();
     });
   }
 
@@ -40,9 +42,15 @@ export class CourseListComponent implements OnInit {
     this._matDialog.open(CourseDialogComponent, {
       data: course
     }).afterClosed().subscribe(() => {
-      this._courseFeature.getCourseList().subscribe(result => {
-        this.dataSource = result;
-      });
+      this.refreshList();
     });
+  }
+
+  onDeleteButtonClick(course: Course) {
+    if (confirm('Yakin Hapus?')) {
+      this._courseFeature.removeCourse(course.courseID).subscribe(() => {
+        this.refreshList();
+      })
+    }
   }
 }

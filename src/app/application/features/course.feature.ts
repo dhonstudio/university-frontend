@@ -22,4 +22,8 @@ export class CourseFeature {
     public updateCourse(id: number, course: CourseParamDto) {
         return this._courseRepository.updateCourse(id, course);
     }
+
+    public removeCourse(id: number) {
+        return this._courseRepository.deleteCourse(id);
+    }
 }
