@@ -18,4 +18,7 @@
 <div>
     <button mat-button >Cancel</button>
     <button mat-button (click)="onLogin()">Login</button>
+    <asl-google-signin-button (click)="loginByGoogle()">
+        <button mat-button >Oauth Login</button>
+    </asl-google-signin-button>
 </div>
