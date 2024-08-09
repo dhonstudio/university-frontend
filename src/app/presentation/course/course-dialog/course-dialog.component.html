@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add Course</h2>
+<h2 mat-dialog-title>{{caption}} Course</h2>
 <mat-dialog-content>
     <form>
         <div>
@@ -16,5 +16,6 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]>Cancel</button>
     <button mat-button (click)="onSaveButtonClick()">Save</button>
 </mat-dialog-actions>

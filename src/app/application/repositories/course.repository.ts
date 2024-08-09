@@ -20,7 +20,7 @@ export class CourseRepository {
     return this._httpClient.post(this._baseUrl, course);
   }
 
-  public updateCourse(course: CourseParamDto) {
-    return this._httpClient.post(this._baseUrl, course);
+  public updateCourse(id: number, course: CourseParamDto) {
+    return this._httpClient.put(this._baseUrl + `/${id}`, course);
   }
 }

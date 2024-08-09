@@ -19,7 +19,7 @@ export class CourseFeature {
         return this._courseRepository.createCourse(course);
     }
 
-    public updateCourse(course: CourseParamDto) {
-        return this._courseRepository.updateCourse(course);
+    public updateCourse(id: number, course: CourseParamDto) {
+        return this._courseRepository.updateCourse(id, course);
     }
 }
