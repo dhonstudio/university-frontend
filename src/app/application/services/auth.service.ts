@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -12,7 +12,9 @@ export class AuthService {
   constructor(private _httpClient: HttpClient) { }
 
   login(credential: any): Observable<any> {
-    return this._httpClient.post(`${this._baseUrl}`, credential);
+    return this._httpClient.post(`${this._baseUrl}`, credential).pipe(
+      catchError(this.handleError)
+    );
   }
 
   saveToken(token: string) {
@@ -21,5 +23,15 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem(environment.authName);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Tidak berhasil';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message
+    } else {
+      errorMessage = error.error.message
+    }
+    return throwError(() => new Error(errorMessage))
   }
 }
