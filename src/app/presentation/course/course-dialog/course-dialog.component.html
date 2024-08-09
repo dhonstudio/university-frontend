@@ -1,1 +1,15 @@
-<p>course-dialog works!</p>
+<form>
+    <div>
+        <label for="title">Title</label>
+    </div>
+    <div>
+        <input id="title" [(ngModel)]="course.title" />
+    </div>
+    <div>
+        <label for="credits">Credits</label>
+    </div>
+    <div>
+        <input type="number" id="credits" [(ngModel)]="course.credits" />
+    </div>
+    <button mat-button (click)="onSaveButtonClick()">Save</button>
+</form>
