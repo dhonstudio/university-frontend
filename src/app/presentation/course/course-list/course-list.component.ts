@@ -11,13 +11,15 @@ import { Course } from '../../../domain/entities/course.entity';
   styleUrl: './course-list.component.scss'
 })
 export class CourseListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'credit'];
+  displayedColumns: string[] = ['courseID', 'title', 'credits'];
   dataSource: Course[] = [];
 
   constructor(private _courseFeature: CourseFeature) { }
 
   ngOnInit(): void {
-    this.dataSource = this._courseFeature.getCourseList();
+    this._courseFeature.getCourseList().subscribe(result => {
+      this.dataSource = result;
+    })
   }
 
   
