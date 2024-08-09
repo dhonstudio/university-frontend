@@ -1,15 +1,20 @@
-<form>
-    <div>
-        <label for="title">Title</label>
-    </div>
-    <div>
-        <input id="title" [(ngModel)]="course.title" />
-    </div>
-    <div>
-        <label for="credits">Credits</label>
-    </div>
-    <div>
-        <input type="number" id="credits" [(ngModel)]="course.credits" />
-    </div>
+<h2 mat-dialog-title>Add Course</h2>
+<mat-dialog-content>
+    <form>
+        <div>
+            <label for="title">Title</label>
+        </div>
+        <div>
+            <input id="title" [(ngModel)]="course.title" name="title" />
+        </div>
+        <div>
+            <label for="credits">Credits</label>
+        </div>
+        <div>
+            <input type="number" id="credits" [(ngModel)]="course.credits" name="credits" />
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
     <button mat-button (click)="onSaveButtonClick()">Save</button>
-</form>
+</mat-dialog-actions>

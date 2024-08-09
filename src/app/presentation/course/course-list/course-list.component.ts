@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable, MatTableModule } from '@angular/material/table';
 import { CourseFeature } from '../../../application/features/course.feature';
 import { Course } from '../../../domain/entities/course.entity';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,10 +25,14 @@ export class CourseListComponent implements OnInit {
   ngOnInit(): void {
     this._courseFeature.getCourseList().subscribe(result => {
       this.dataSource = result;
-    })
+    });
   }
 
   onAddButtonClik() {
-    this._matDialog.open(CourseDialogComponent);
+    this._matDialog.open(CourseDialogComponent).afterClosed().subscribe(() => {
+      this._courseFeature.getCourseList().subscribe(result => {
+        this.dataSource = result;
+      });
+    });
   }
 }
