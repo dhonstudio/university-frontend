@@ -17,6 +17,20 @@ export class AuthService {
     );
   }
 
+  getUser(): any {
+    const token = localStorage.getItem(environment.authName)
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]))
+      return decodedToken
+    }
+
+    return null
+  }
+
+  logout() {
+    localStorage.removeItem(environment.authName)
+  }
+
   saveToken(token: string) {
     localStorage.setItem(environment.authName, token)
   }
