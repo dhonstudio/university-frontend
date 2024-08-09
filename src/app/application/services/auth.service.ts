@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,10 @@ export class AuthService {
   }
 
   saveToken(token: string) {
-    localStorage.setItem("authToken", token)
+    localStorage.setItem(environment.authName, token)
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('authToken');
+    return !!localStorage.getItem(environment.authName);
   }
 }
