@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../application/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   credential = {
     username: '',
     password: ''
@@ -20,6 +20,11 @@ export class LoginComponent {
     private _authService: AuthService,
     private _router: Router,
   ) { }
+  ngOnInit(): void {
+    if (this._authService.isLoggedIn()) {
+      this._router.navigate(['/course']);
+    }
+  }
 
   onLogin() {
     this._authService.login(this.credential).subscribe((response) => {
