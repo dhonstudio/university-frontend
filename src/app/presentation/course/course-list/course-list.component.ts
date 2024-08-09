@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { CourseFeature } from '../../../application/features/course.feature';
+import { Course } from '../../../domain/entities/course.entity';
 
 @Component({
   selector: 'app-course-list',
@@ -8,7 +10,15 @@ import { MatTableModule } from '@angular/material/table';
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })
-export class CourseListComponent {
+export class CourseListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'title', 'credit'];
-  dataSource = ELEMENT_DATA;
+  dataSource: Course[] = [];
+
+  constructor(private _courseFeature: CourseFeature) { }
+
+  ngOnInit(): void {
+    this.dataSource = this._courseFeature.getCourseList();
+  }
+
+  
 }

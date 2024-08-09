@@ -20,4 +20,8 @@ const ELEMENT_DATA: Course[] = [
 export class CourseRepository {
 
   constructor() { }
+
+  public getAllCourse(): Course[] {
+    return ELEMENT_DATA;
+  }
 }
