@@ -14,7 +14,7 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
   styleUrl: './course-list.component.scss'
 })
 export class CourseListComponent implements OnInit {
-  displayedColumns: string[] = ['courseID', 'title', 'credits'];
+  displayedColumns: string[] = ['courseID', 'title', 'credits', 'action'];
   dataSource: Course[] = [];
 
   constructor(
@@ -30,6 +30,16 @@ export class CourseListComponent implements OnInit {
 
   onAddButtonClik() {
     this._matDialog.open(CourseDialogComponent).afterClosed().subscribe(() => {
+      this._courseFeature.getCourseList().subscribe(result => {
+        this.dataSource = result;
+      });
+    });
+  }
+
+  onEditButtonClick(course: Course) {
+    this._matDialog.open(CourseDialogComponent, {
+      data: course
+    }).afterClosed().subscribe(() => {
       this._courseFeature.getCourseList().subscribe(result => {
         this.dataSource = result;
       });
