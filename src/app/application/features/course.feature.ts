@@ -13,4 +13,8 @@ export class CourseFeature {
     public getCourseList(): Observable<Course[]> {
         return this._courseRepository.getAllCourse();
     }
+
+    public addCourse(course: Course) {
+        return this._courseRepository.createCourse(course);
+    }
 }
