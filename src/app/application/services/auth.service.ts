@@ -17,6 +17,12 @@ export class AuthService {
     );
   }
 
+  checkGoogleUser(user: any): Observable<any> {
+    return this._httpClient.post(`${this._baseUrl}/checkGoogleUser`, user).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getUser(): any {
     const token = localStorage.getItem(environment.authName)
     if (token) {
